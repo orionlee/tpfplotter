@@ -8,6 +8,7 @@ import warnings
 import numpy as np
 import argparse
 
+import lightkurve as lk
 from lightkurve import search_targetpixelfile
 from lightkurve import search_tesscut
 import matplotlib
@@ -316,6 +317,8 @@ if __name__ == "__main__":
 
 
     download_dir = args.DOWNLOAD_DIR
+    if hasattr(lk.search, "sr_cache"):
+        lk.search.sr_cache.cache_dir = download_dir
     for tt,tic in enumerate(tics):
 
         if args.COORD  is not False:
